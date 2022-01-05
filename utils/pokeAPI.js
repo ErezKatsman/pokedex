@@ -8,7 +8,7 @@ const getDeatailsByName = async (name) => {
     back_default: data.sprites.back_default,
     front_default: data.sprites.front_default,
   };
-  return { height, weight, id, sprites, types };
+  return { name, height, weight, id, sprites, types };
 };
 
 const getPokemonsByType = async (name) => {
