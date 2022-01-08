@@ -13,6 +13,7 @@ const api = axios.create({
 function App() {
   const [pokemon, setPokemon] = useState({});
   const [name, setName] = useState("");
+  const [typeList, setTypeList] = useState([]);
 
   const isInitialMount = useRef(true);
 
@@ -29,12 +30,21 @@ function App() {
       }
     }
   }, [name]);
+
+  const getTypeList = async (e) => {
+    const type = e.target.innerText;
+    console.log("started");
+    const res = await api.get(`/type/${type}`);
+    console.log("finished");
+    setTypeList(res.data);
+  };
+
   return (
     <div className="App">
       <Header />
       <InputSection setPokemonName={setName} />
-      <Card pokemon={pokemon} />
-      <Types />
+      <Card pokemon={pokemon} getTypeList={getTypeList} />
+      <Types typeList={typeList} setName={setName} />
       <Collection />
     </div>
   );

@@ -7,17 +7,19 @@ type.get("/:name", async (req, res) => {
   const { name } = req.params;
   try {
     const data = await getPokemonsByType(name);
+    console.log("start");
     const pokemons = await Promise.all(
       data.map(async (pokemon) => {
         const photo = await (
           await getDeatailsByName(pokemon.pokemon.name)
         ).sprites.front_default;
-        return photo;
+        return { photo, name: pokemon.pokemon.name };
       })
     );
+    console.log("finish");
     res.json(pokemons);
   } catch (err) {
-    console.log(`Error occurred: ${err.message}`);
+    console.log(err);
     res.status(404).json({
       error: err.message,
       data: "Type not found",
