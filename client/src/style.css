@@ -55,11 +55,14 @@ h1 {
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 1s ease-out;
+  background-color: aliceblue;
+  transition: opacity 0.45s;
 }
+
 .image-hover:hover {
   opacity: 1;
 }
+
 .types__card {
   margin: 10px;
 }

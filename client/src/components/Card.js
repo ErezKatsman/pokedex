@@ -20,17 +20,9 @@ export default function Card({ pokemon, getTypeList }) {
         })}
       </div>
 
-      {/* <img
-        className="figure"
-        src={sprites.front_default}
-        onMouseOver={(e) => (e.currentTarget.src = sprites.back_default)}
-        onMouseOut={(e) => (e.currentTarget.src = sprites.front_default)}
-        alt={"pokemon"}
-      /> */}
-
       <div className="image-wrapper">
-        <img src={sprites.front_default} className="image" alt="normal" />
-        <img src={sprites.back_default} className="image-hover" alt="hover" />
+        <img src={sprites.front_default} className="image" alt="front" />
+        <img src={sprites.back_default} className="image-hover" alt="back" />
       </div>
     </div>
   );
