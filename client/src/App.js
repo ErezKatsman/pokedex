@@ -45,7 +45,7 @@ function App() {
       <InputSection setPokemonName={setName} />
       <Card pokemon={pokemon} getTypeList={getTypeList} />
       <Types typeList={typeList} setName={setName} />
-      <Collection />
+      {/* <Collection /> */}
     </div>
   );
 }
