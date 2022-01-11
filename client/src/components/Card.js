@@ -1,9 +1,20 @@
 import React from "react";
 
-export default function Card({ pokemon, getTypeList }) {
-  const { name, height, weight, sprites, types } = pokemon;
+export default function Card({
+  pokemon,
+  getTypeList,
+  collection,
+  addOrDelete,
+}) {
+  const { name, height, weight, sprites, types, id } = pokemon;
+
+  const addOrRelease = () => {
+    if (collection.find((poke) => poke.id === id)) return "Release";
+    else return "Add";
+  };
+
   if (Object.keys(pokemon).length === 0 && pokemon.constructor === Object)
-    return <div>empty card</div>;
+    return <div className="poke-card"></div>;
 
   return (
     <div className="poke-card">
@@ -24,6 +35,11 @@ export default function Card({ pokemon, getTypeList }) {
         <img src={sprites.front_default} className="image" alt="front" />
         <img src={sprites.back_default} className="image-hover" alt="back" />
       </div>
+      <span
+        onClick={async (e) => await addOrDelete(e.target.innerText, pokemon)}
+      >
+        {addOrRelease()}
+      </span>
     </div>
   );
 }

@@ -1,10 +1,15 @@
 import React from "react";
 
-export default function Header() {
+export default function Header({ typeList, setTypeList }) {
   return (
     <div className="header-section">
       <h1 className="main_title">Pokedex</h1>
-      <span className="show-collect">Click here to show your collection</span>
+      {typeList.length !== 0 && (
+        <span className="show-collect">
+          <span onClick={() => setTypeList([])}>Click here</span> to show your
+          collection
+        </span>
+      )}
     </div>
   );
 }

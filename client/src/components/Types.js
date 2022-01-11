@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 
 export default function Types({ typeList, setName }) {
-  if (typeList.length === 0) return <div>empty type</div>;
   const settings = {
     dots: true,
     infinite: true,

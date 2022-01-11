@@ -19,8 +19,10 @@ collection.post("/catch", async (req, res) => {
     height: body.height,
     weight: body.weight,
     id: body.id,
-    back_default: body.sprites.back_default,
-    front_default: body.sprites.front_default,
+    sprites: {
+      back_default: body.sprites.back_default,
+      front_default: body.sprites.front_default,
+    },
     types: body.types,
   });
 
