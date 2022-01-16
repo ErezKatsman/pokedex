@@ -16,7 +16,7 @@ export default function Types({ typeList, setName }) {
     arrows: false,
   };
   return (
-    <div className="collection">
+    <div className="types">
       <Slider {...settings}>
         {typeList.map((p, i) => (
           <div key={i}>

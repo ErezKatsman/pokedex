@@ -27,10 +27,12 @@ collection.post("/catch", async (req, res) => {
   });
 
   try {
+    console.log(1);
     await pokemonToAdd.save();
+    console.log(1);
     return res.status(200).json({ message: "Added Succesfully" });
   } catch (e) {
-    return res.status(500).json({ error: `${e}` });
+    return res.status(500).json({ error: `${e.message}` });
   }
 });
 

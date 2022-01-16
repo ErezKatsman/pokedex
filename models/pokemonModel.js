@@ -6,7 +6,7 @@ const pokemonSchema = new mongoose.Schema({
   weight: { type: Number, required: true },
   id: { type: Number, required: true },
   sprites: {
-    back_default: { type: String, required: true },
+    back_default: { type: String },
     front_default: { type: String, required: true },
   },
   types: { type: Array },

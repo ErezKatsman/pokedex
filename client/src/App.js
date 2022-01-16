@@ -15,7 +15,9 @@ function App() {
   const [name, setName] = useState("");
   const [typeList, setTypeList] = useState([]);
   const [collection, setCollection] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  console.log(error.length !== 0);
   const isInitialMount = useRef(true);
 
   useEffect(async () => {
@@ -32,43 +34,92 @@ function App() {
     }
   }, [name]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setError("");
+    }, 10000);
+  }, [error]);
+
   const fetchCollection = async () => {
-    const { data } = await api.get("/collection/");
-    setCollection(data);
-    console.log(collection);
+    try {
+      setIsLoading(true);
+      const { data } = await api.get("/collection/");
+      setCollection(data);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+      setIsLoading(false);
+      setError("Error occurrd");
+    }
   };
 
   const fetchPokemon = async () => {
-    const { data } = await api.get(`/pokemon/${name}`);
-    setPokemon(data.data);
+    try {
+      setIsLoading(true);
+      const { data } = await api.get(`/pokemon/${name}`);
+      setPokemon(data.data);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+      setIsLoading(false);
+      setError("Error occurrd");
+    }
   };
 
   const getTypeList = async (e) => {
-    const type = e.target.innerText;
-    console.log("started");
-    const res = await api.get(`/type/${type}`);
-    console.log("finished");
-    setTypeList(res.data);
+    try {
+      const type = e.target.innerText;
+      console.log("started");
+      setIsLoading(true);
+      const res = await api.get(`/type/${type}`);
+      console.log("finished");
+      setTypeList(res.data);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+      setIsLoading(false);
+      setError("Error occurrd");
+    }
   };
 
   const addToCollection = async (pokemon) => {
-    await api.post("/collection/catch", pokemon);
-    await fetchCollection();
+    try {
+      setIsLoading(true);
+      await api.post("/collection/catch", pokemon);
+      await fetchCollection();
+      setIsLoading(false);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+      setIsLoading(false);
+      setError("Error occurrd");
+    }
   };
 
   const deleteFromCollection = async (id) => {
-    await api.delete(`/collection/release/${id}`);
-    await fetchCollection();
+    try {
+      setIsLoading(true);
+      await api.delete(`/collection/release/${id}`);
+      await fetchCollection();
+      setIsLoading(false);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+      setIsLoading(false);
+      setError("Error occurrd");
+    }
   };
 
   const addOrDelete = async (word, pokemon) => {
+    console.log(pokemon);
     if (word === "Add") await addToCollection(pokemon);
     else await deleteFromCollection(pokemon.id);
   };
 
   return (
-    <div className="App">
+    <div className={`app ${isLoading && "no-click"}`}>
+      {error.length !== 0 && <div className="error">{error}</div>}
+      {isLoading && <div className="loader"></div>}
       <Header typeList={typeList} setTypeList={setTypeList} />
+
       <InputSection setPokemonName={setName} />
       <Card
         pokemon={pokemon}

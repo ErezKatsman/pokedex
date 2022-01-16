@@ -6,8 +6,10 @@ export default function Header({ typeList, setTypeList }) {
       <h1 className="main_title">Pokedex</h1>
       {typeList.length !== 0 && (
         <span className="show-collect">
-          <span onClick={() => setTypeList([])}>Click here</span> to show your
-          collection
+          <span className="clickable" onClick={() => setTypeList([])}>
+            Click here
+          </span>{" "}
+          to show your collection
         </span>
       )}
     </div>

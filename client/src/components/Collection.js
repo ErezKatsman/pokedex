@@ -5,7 +5,7 @@ import Slider from "react-slick";
 export default function Collection({ collection, getTypeList, addOrDelete }) {
   const settings = {
     dots: true,
-    infinite: collection.length > 3,
+    infinite: false,
     centerPadding: "60px",
     slidesToShow: 3,
     speed: 500,
