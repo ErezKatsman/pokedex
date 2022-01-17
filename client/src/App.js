@@ -17,7 +17,6 @@ function App() {
   const [collection, setCollection] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  console.log(error.length !== 0);
   const isInitialMount = useRef(true);
 
   useEffect(async () => {

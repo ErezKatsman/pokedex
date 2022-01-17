@@ -7,7 +7,6 @@ type.get("/:name", async (req, res) => {
   const { name } = req.params;
   try {
     const data = await getPokemonsByType(name);
-    console.log("start");
     const pokemons = await Promise.all(
       data.map(async (pokemon) => {
         const photo = await (
@@ -16,7 +15,6 @@ type.get("/:name", async (req, res) => {
         return { photo, name: pokemon.pokemon.name };
       })
     );
-    console.log("finish");
     res.json(pokemons);
   } catch (err) {
     console.log(err);
