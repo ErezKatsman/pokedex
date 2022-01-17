@@ -1,4 +1,4 @@
-# ![Scale-Up Velocity](./readme-files/logo-main.png) Poekex
+# Poekex
 
 In this project, I built a Pokemon collection Web Application, with the [MERN stack](https://www.educative.io/edpresso/what-is-mern-stack).
 I got this task in my full-stack coure with some requirements. 
