@@ -18,7 +18,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const isInitialMount = useRef(true);
-  console.log(collection);
 
   useEffect(async () => {
     if (isInitialMount.current) {
