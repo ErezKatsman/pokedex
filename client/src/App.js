@@ -5,11 +5,13 @@ import Card from "./components/Card";
 import Types from "./components/Types";
 import Collection from "./components/Collection";
 import axios from "axios";
-const api;
+
 if (process.env.NODE_ENV !== "production") {
-  api = axios.create({
+  var api = axios.create({
     baseURL: "http://localhost:5000/api/",
   });
+} else {
+  var api = axios.create({ baseURL: "" });
 }
 
 function App() {
