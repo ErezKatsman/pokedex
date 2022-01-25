@@ -5,10 +5,12 @@ import Card from "./components/Card";
 import Types from "./components/Types";
 import Collection from "./components/Collection";
 import axios from "axios";
-
-const api = axios.create({
-  baseURL: "",
-});
+const api;
+if (process.env.NODE_ENV !== "production") {
+  api = axios.create({
+    baseURL: "http://localhost:5000/api/",
+  });
+}
 
 function App() {
   const [pokemon, setPokemon] = useState({});
