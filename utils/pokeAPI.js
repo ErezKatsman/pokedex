@@ -1,9 +1,9 @@
 const { default: axios } = require("axios");
 const POKEAPI_BASE_URL = "https://pokeapi.co/api/v2";
 
-const getDeatailsByName = async (name) => {
-  const { data } = await axios.get(`${POKEAPI_BASE_URL}/pokemon/${name}`);
-  const { height, weight, id, types } = data;
+const getDeatailsByName = async (nameE) => {
+  const { data } = await axios.get(`${POKEAPI_BASE_URL}/pokemon/${nameE}`);
+  const { height, weight, id, types, name } = data;
   const sprites = {
     back_default: data.sprites.back_default,
     front_default: data.sprites.front_default,
